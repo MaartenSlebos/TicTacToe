@@ -1,7 +1,7 @@
 // The gameboard (IIFE module pattern)
 
 const Gameboard = (function() {
-    let board = ['', '', '', '', '', '', '', '', '']
+    const board = ['', '', '', '', '', '', '', '', '']
     return {
       placeMarker: function() {
 
