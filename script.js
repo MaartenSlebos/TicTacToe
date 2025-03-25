@@ -1,6 +1,7 @@
 // The gameboard (IIFE module pattern)
 const Gameboard = (function() {
     const board = ['', '', '', '', '', '', '', '', ''];
+
     return {
       placeMarker: function(position, symbol) {
         if (position >= 0 && position < board.length && board[position] === '') {
@@ -33,14 +34,23 @@ const playerFactory = function (name, symbol) {
   };
 }
 
-
-
 // The Game Controller (IIFE module pattern)
+const GameController = (function() {
+  let player1 = playerFactory('Maarten', 'X');
+  let player2 = playerFactory('Pieter', 'O');
+  let currentPlayer = player1;
 
-// const GameController = (function() {
+  return {
+    playMove: function(position) {
+      Gameboard.placeMarker(position, currentPlayer.getSymbol());
+      if (currentPlayer === player1) {
+        currentPlayer = player2;
+      } else {
+        currentPlayer = player1;
+      }
+    }
+  };
+})();
 
-//     return {
 
-//     };
-//   })();
 
