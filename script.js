@@ -6,7 +6,12 @@ const Gameboard = (function() {
 
     return {
       placeMarker: function(position, symbol) {
-
+        if (position >= 0 && position < board.length && board[position] === '') {
+            board[position] = symbol;
+            return true; 
+        } else {
+            return false; 
+        }
       },
       getBoard: function() {
         return [...board]
@@ -24,10 +29,10 @@ const Gameboard = (function() {
 
 // The Game Controller (IIFE module pattern)
 
-const gameController = (function() {
+// const gameController = (function() {
 
-    return {
+//     return {
 
-    };
-  })();
+//     };
+//   })();
 
