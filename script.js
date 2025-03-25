@@ -5,6 +5,12 @@ const Gameboard = (function() {
     return {
       placeMarker: function() {
 
+      },
+      getBoard: function() {
+
+      },
+      resetBoard: function() {
+        
       }
     };
   })();
