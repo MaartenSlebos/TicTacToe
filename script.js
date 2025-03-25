@@ -2,10 +2,10 @@
 
 const Gameboard = (function() {
 
-    const board = ['', '', '', '', '', '', '', '', '']
+    const board = ['', '', '', '', '', '', '', '', ''];
 
     return {
-      placeMarker: function() {
+      placeMarker: function(position, symbol) {
 
       },
       getBoard: function() {
@@ -14,7 +14,7 @@ const Gameboard = (function() {
       resetBoard: function() {
         for (let i = 0; i < board.length; i++) {
             board[i] = '';
-          }
+        }
       }
     };
   })();
@@ -31,6 +31,3 @@ const gameController = (function() {
     };
   })();
 
-
-console.log(Gameboard.getBoard())
-console.log(Gameboard.resetBoard())
