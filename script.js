@@ -52,5 +52,10 @@ const GameController = (function() {
   };
 })();
 
+console.log(Gameboard.getBoard())
+GameController.playMove(3); 
+console.log(Gameboard.getBoard())
+GameController.playMove(0)
+console.log(Gameboard.getBoard())
 
 
