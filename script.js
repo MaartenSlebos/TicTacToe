@@ -1,9 +1,6 @@
 // The gameboard (IIFE module pattern)
-
 const Gameboard = (function() {
-
     const board = ['', '', '', '', '', '', '', '', ''];
-
     return {
       placeMarker: function(position, symbol) {
         if (position >= 0 && position < board.length && board[position] === '') {
@@ -24,12 +21,23 @@ const Gameboard = (function() {
     };
   })();
 
-
 // Player objects (Factory function) 
+const playerFactory = function (name, symbol) {
+  return {
+    getName: function() {
+      return name; 
+    },
+    getSymbol: function() {
+      return symbol;
+    }
+  };
+}
+
+
 
 // The Game Controller (IIFE module pattern)
 
-// const gameController = (function() {
+// const GameController = (function() {
 
 //     return {
 
