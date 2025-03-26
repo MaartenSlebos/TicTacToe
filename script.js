@@ -39,6 +39,7 @@ const GameController = (function() {
   let player1 = playerFactory('Maarten', 'X');
   let player2 = playerFactory('Pieter', 'O');
   let currentPlayer = player1;
+  let gameOver = false; 
 
   const checkWin = function() {
     const board = Gameboard.getBoard(); 
@@ -63,20 +64,48 @@ const GameController = (function() {
     }
   }
 
+  const checkTie = function () {
+    const board = Gameboard.getBoard(); 
+    let boardFilled = true; 
+
+    for (let i = 0; i < board.length; i++) {
+      if (board[i] === '') {
+        boardFilled = false; 
+        break; 
+      } 
+    }
+
+    if (boardFilled && !checkWin()) {
+      return true
+    }
+    return false; 
+  };
+
   return {
     playMove: function(position) {
-      // place marker 
+      if (gameOver) return; // Stop if game’s over
       Gameboard.placeMarker(position, currentPlayer.getSymbol());
-      // check for winner
-      console.log(checkWin()); // Test it
-      // switch player
-      if (currentPlayer === player1) {
-        currentPlayer = player2;
+      if (checkWin()) {
+        gameOver = true;
+        console.log(currentPlayer.getName() + " wins!");
+      } else if (checkTie()) {
+        gameOver = true;
+        console.log("It’s a tie!");
       } else {
-        currentPlayer = player1;
+        if (currentPlayer === player1) {
+          currentPlayer = player2;
+        } else {
+          currentPlayer = player1;
+        }
       }
     }
   };
 })();
 
-
+GameController.playMove(0); // X
+GameController.playMove(3); // O
+GameController.playMove(1); // X
+GameController.playMove(4); // O
+GameController.playMove(2); // X -> Win
+GameController.playMove(5); // Should do nothing
+console.log(Gameboard.getBoard());
