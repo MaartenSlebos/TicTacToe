@@ -112,3 +112,9 @@ const GameController = (function() {
     }
   };
 })();
+
+while (!GameController.isGameOver()) {
+  let pos = prompt(GameController.getCurrentPlayer().getName() + "’s turn (0-8):");
+  GameController.playMove(parseInt(pos));
+  console.log(Gameboard.getBoard());
+}
