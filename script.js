@@ -40,9 +40,36 @@ const GameController = (function() {
   let player2 = playerFactory('Pieter', 'O');
   let currentPlayer = player1;
 
+  const checkWin = function() {
+    const board = Gameboard.getBoard(); 
+    if (board[0] !== '' && board[0] === board[1] && board[1] === board[2]) {
+      return true; // Top row win
+    } else if (board[3] !== '' && board[3] === board[4] && board[4] === board[5]) {
+      return true; // Middle row win
+    } else if (board[6] !== '' && board[6] === board[7] && board[7] === board[8]) {
+      return true; // Bottom row win
+    } else if (board[0] !== '' && board[0] === board[3] && board[3] === board[6]) {
+      return true; // Left column win
+    } else if (board[1] !== '' && board[1] === board[4] && board[4] === board[7]) {
+      return true; // Middle column win
+    } else if (board[2] !== '' && board[2] === board[5] && board[5] === board[8]) {
+      return true; // Right column win
+    } else if (board[0] !== '' && board[0] === board[4] && board[4] === board[8]) {
+      return true; // Diagonal (top left to bottom right) win 
+    } else if (board[2] !== '' && board[2] === board[4] && board[4] === board[6]) {
+      return true; // Diagonal (top right to bottom left) win
+    } else {
+      return false; 
+    }
+  }
+
   return {
     playMove: function(position) {
+      // place marker 
       Gameboard.placeMarker(position, currentPlayer.getSymbol());
+      // check for winner
+      console.log(checkWin()); // Test it
+      // switch player
       if (currentPlayer === player1) {
         currentPlayer = player2;
       } else {
@@ -51,11 +78,5 @@ const GameController = (function() {
     }
   };
 })();
-
-console.log(Gameboard.getBoard())
-GameController.playMove(3); 
-console.log(Gameboard.getBoard())
-GameController.playMove(0)
-console.log(Gameboard.getBoard())
 
 
