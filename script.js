@@ -98,14 +98,17 @@ const GameController = (function() {
           currentPlayer = player1;
         }
       }
+    },
+    resetGame: function () {
+      Gameboard.resetBoard();
+      currentPlayer = player1; 
+      gameOver = false; 
+    },
+    getCurrentPlayer: function () {
+      return currentPlayer; 
+    },
+    isGameOver: function () {
+      return gameOver; 
     }
   };
 })();
-
-GameController.playMove(0); // X
-GameController.playMove(3); // O
-GameController.playMove(1); // X
-GameController.playMove(4); // O
-GameController.playMove(2); // X -> Win
-GameController.playMove(5); // Should do nothing
-console.log(Gameboard.getBoard());
